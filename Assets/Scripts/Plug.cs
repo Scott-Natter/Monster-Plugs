@@ -6,9 +6,13 @@ public class Plug : MonoBehaviour
 {
     public GameObject CordParent;
     public Gradient CordMat;
+
+
     private GameObject CordLine;
     private GameObject CordStart;
     private LineRenderer Cord;
+
+    public bool isDragging;
 
     // Start is called before the first frame update
     void Start()
@@ -30,5 +34,21 @@ public class Plug : MonoBehaviour
     void Update()
     {
         Cord.SetPosition(1, this.transform.position);
+
+        if (isDragging)
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            transform.Translate(mousePosition);
+        }
+    }
+
+    void OnMouseDown()
+    {
+        isDragging = true;
+    }
+
+    void OnMouseUp()
+    {
+        isDragging = false;
     }
 }
