@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Port : MonoBehaviour
 {
-    private bool isConnected;
+    public bool isConnectedtoPlug;
     void Update()
     {
-        if (isConnected)
+        if (isConnectedtoPlug)
         {
             print("works");
         }

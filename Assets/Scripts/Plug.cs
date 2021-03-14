@@ -13,6 +13,7 @@ public class Plug : MonoBehaviour
     private LineRenderer Cord;
     private Vector3 InitialPosition;
     private Vector3 ConnectedPosition;
+    private Port ConnectedPort;
 
     public bool isDragging;
     public bool isConnected;
@@ -50,6 +51,10 @@ public class Plug : MonoBehaviour
     {
         isDragging = true;
         isConnected = false;
+        if(ConnectedPort != null)
+        {
+            ConnectedPort.isConnectedtoPlug = false;
+        }
     }
 
     void OnMouseUp()
@@ -62,19 +67,22 @@ public class Plug : MonoBehaviour
         if (isConnected)
         {
             this.transform.position = ConnectedPosition;
+            ConnectedPort.isConnectedtoPlug = true;
         }
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.transform.tag == "Port")
+        if(col.transform.tag == "Port" && col.gameObject.GetComponent<Port>().isConnectedtoPlug is false)
         {
             isConnected = true;
             ConnectedPosition = col.transform.position;
+            ConnectedPort = col.gameObject.GetComponent<Port>();
         }
     }
     void OnTriggerExit2D(Collider2D col)
     {
         isConnected = false;
+        ConnectedPort = null;
     }
 }
