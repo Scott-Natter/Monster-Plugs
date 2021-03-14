@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Plug : MonoBehaviour
 {
-    public GameObject CordParent;
+    private GameObject CordParent;
     public Gradient CordMat;
 
+    private bool isInstantiated = false;
 
     private GameObject CordLine;
     private GameObject CordStart;
@@ -17,10 +18,12 @@ public class Plug : MonoBehaviour
 
     public bool isDragging;
     public bool isConnected;
-
+    
     // Start is called before the first frame update
-    void Start()
+    public IEnumerator Start()
     {
+        yield return new WaitForEndOfFrame();
+        CordParent = GameObject.Find("Cords");
         CordLine = new GameObject("Line" + this.gameObject);
         CordLine.transform.parent = CordParent.transform;
         CordLine.AddComponent<LineRenderer>();
@@ -33,17 +36,21 @@ public class Plug : MonoBehaviour
         CordStart.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 3, 0);
         Cord.SetPosition(0, CordStart.transform.position);
         InitialPosition = this.transform.position;
+        isInstantiated = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Cord.SetPosition(1, this.transform.position);
-
-        if (isDragging)
+        if (isInstantiated)
         {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            transform.Translate(mousePosition);
+            Cord.SetPosition(1, this.transform.position);
+
+            if (isDragging)
+            {
+                Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+                transform.Translate(mousePosition);
+            }
         }
     }
 
