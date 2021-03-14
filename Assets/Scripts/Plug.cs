@@ -11,13 +11,16 @@ public class Plug : MonoBehaviour
     private GameObject CordLine;
     private GameObject CordStart;
     private LineRenderer Cord;
+    private Vector3 InitialPosition;
+    private Vector3 ConnectedPosition;
 
     public bool isDragging;
+    public bool isConnected;
 
     // Start is called before the first frame update
     void Start()
     {
-        CordLine = new GameObject("Line"+ this.gameObject);
+        CordLine = new GameObject("Line" + this.gameObject);
         CordLine.transform.parent = CordParent.transform;
         CordLine.AddComponent<LineRenderer>();
         Cord = CordLine.GetComponent<LineRenderer>();
@@ -28,6 +31,7 @@ public class Plug : MonoBehaviour
         CordStart.transform.parent = CordParent.transform;
         CordStart.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 3, 0);
         Cord.SetPosition(0, CordStart.transform.position);
+        InitialPosition = this.transform.position;
     }
 
     // Update is called once per frame
@@ -45,10 +49,32 @@ public class Plug : MonoBehaviour
     void OnMouseDown()
     {
         isDragging = true;
+        isConnected = false;
     }
 
     void OnMouseUp()
     {
         isDragging = false;
+        if (!isConnected)
+        {
+            this.transform.position = InitialPosition;
+        }
+        if (isConnected)
+        {
+            this.transform.position = ConnectedPosition;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.transform.tag == "Port")
+        {
+            isConnected = true;
+            ConnectedPosition = col.transform.position;
+        }
+    }
+    void OnTriggerExit2D(Collider2D col)
+    {
+        isConnected = false;
     }
 }
