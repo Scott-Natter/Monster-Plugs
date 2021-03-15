@@ -15,6 +15,7 @@ public class Plug : MonoBehaviour
     private Vector3 InitialPosition;
     private Vector3 ConnectedPosition;
     private Port ConnectedPort;
+    private AudioSource audioSource;
 
     public bool isDragging;
     public bool isConnected;
@@ -22,6 +23,7 @@ public class Plug : MonoBehaviour
     // Start is called before the first frame update
     public IEnumerator Start()
     {
+        audioSource = GetComponent<AudioSource>();
         yield return new WaitForEndOfFrame();
         CordParent = GameObject.Find("Cords");
         CordLine = new GameObject("Line" + this.gameObject);
@@ -60,6 +62,7 @@ public class Plug : MonoBehaviour
         isConnected = false;
         if(ConnectedPort != null)
         {
+            ConnectedPort.PlayDisconnectSound();
             ConnectedPort.isConnectedtoPlug = false;
         }
     }
@@ -73,6 +76,7 @@ public class Plug : MonoBehaviour
         }
         if (isConnected)
         {
+            PlayConnectedSound();
             this.transform.position = ConnectedPosition;
             ConnectedPort.isConnectedtoPlug = true;
         }
@@ -91,5 +95,10 @@ public class Plug : MonoBehaviour
     {
         isConnected = false;
         ConnectedPort = null;
+    }
+
+    void PlayConnectedSound()
+    {
+        audioSource.Play();
     }
 }

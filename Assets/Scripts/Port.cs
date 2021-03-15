@@ -9,6 +9,7 @@ public class Port : MonoBehaviour
     public float depletionRate = 0.025f;
     public float tempChargeRate = 0.025f;
 
+    AudioSource audioSource;
     public ChargeBar chargeBar;
     public ChargeBar overallChargeBar;
     public bool isConnectedtoPlug;
@@ -16,6 +17,7 @@ public class Port : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         overallChargeBar = GameObject.Find("/Canvas/ChargeBar").GetComponent<ChargeBar>();
         currentCharge = maximumCharge;
         chargeBar.SetMaxCharge(maximumCharge);
@@ -42,5 +44,9 @@ public class Port : MonoBehaviour
 
         // Set the UI ChargeBar's "health"
         chargeBar.SetCharge(currentCharge);
+    }
+    public void PlayDisconnectSound()
+    {
+        audioSource.Play();
     }
 }
