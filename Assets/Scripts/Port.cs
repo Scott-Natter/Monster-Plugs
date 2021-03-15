@@ -23,7 +23,6 @@ public class Port : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Debug.Log(currentCharge);
         if (isConnectedtoPlug && currentCharge <= 100f)
         {
             //Will get replaced by a charging rate specific to
