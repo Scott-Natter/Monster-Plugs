@@ -78,7 +78,7 @@ public class Plug : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
         if(col.transform.tag == "Port" && col.gameObject.GetComponent<Port>().isConnectedtoPlug is false)
         {
