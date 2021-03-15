@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentCharge: 0
   maximumCharge: 100
-  depletionRate: 0.2
+  depletionRate: 0.075
   tempChargeRate: 0.125
   chargeBar: {fileID: 3280055964865102385}
   overallChargeBar: {fileID: 0}
