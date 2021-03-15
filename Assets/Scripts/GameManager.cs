@@ -8,9 +8,8 @@ public class GameManager : MonoBehaviour
     public int PlugsPerLevel, PortsPerLevel;
     private int LevelNum = 0;
     public Vector3 InitialPlugSpawn;
-
     public GameObject PlugHolder, Plug, PortHolder, Port, CordHolder, PortLocations;
-
+    public TimerCountDown Timer;
     public float overallCharge;
     private float overallChargeMax = 100f;
     public ChargeBar overallChargeBar;
@@ -38,7 +37,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Timer.TimerDone == true && overallCharge > 0)
         {
             foreach (Transform child in CordHolder.transform)
             {
@@ -52,6 +51,8 @@ public class GameManager : MonoBehaviour
             {
                 Destroy(child.gameObject);
             }
+            Timer.TimerDone = false;
+            Timer.secondsLeft = 45;
             NewLevel();  
         }
         if (overallChargeBar.transform.GetComponent<Slider>().value <= 0)
