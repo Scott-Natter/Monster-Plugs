@@ -10,13 +10,22 @@ public class Port : MonoBehaviour
 
     private void Start()
     {
-        EnergyBar = this.transform.GetChild(0).gameObject;
+        //EnergyBar = this.transform.GetChild(0).gameObject;
     }
     void Update()
     {
         if (isConnectedtoPlug)
         {
             print("works");
+        }
+        if (!isConnectedtoPlug)
+        {
+            //subtract
+        }
+        if (energynum <= 0)
+        {
+            //subtract from overall health
+            energynum = 0;
         }
     }
 }

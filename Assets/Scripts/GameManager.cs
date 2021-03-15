@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public Vector3 InitialPlugSpawn;
 
     public GameObject PlugHolder, Plug, PortHolder, Port, CordHolder, PortLocations;
+
+    public int overallHealth;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,8 +45,12 @@ public class GameManager : MonoBehaviour
             {
                 Destroy(child.gameObject);
             }
-            NewLevel();
-            
+            NewLevel();  
+        }
+        if (overallHealth <= 0)
+        {
+            overallHealth = 0;
+            //Trigger Lose State and display levelnum + 1
         }
     }
 
