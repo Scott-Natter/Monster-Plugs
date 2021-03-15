@@ -17,12 +17,16 @@ public class Plug : MonoBehaviour
     private Port ConnectedPort;
     private AudioSource audioSource;
 
+    private SpriteRenderer SR;
+    public Sprite ConnectedSprite, DisconnectedSprite;
+
     public bool isDragging;
     public bool isConnected;
     
     // Start is called before the first frame update
     public IEnumerator Start()
     {
+        SR = this.GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
         yield return new WaitForEndOfFrame();
         CordParent = GameObject.Find("Cords");
@@ -63,6 +67,7 @@ public class Plug : MonoBehaviour
         if(ConnectedPort != null)
         {
             ConnectedPort.PlayDisconnectSound();
+            SR.sprite = DisconnectedSprite;
             ConnectedPort.isConnectedtoPlug = false;
         }
     }
@@ -73,10 +78,12 @@ public class Plug : MonoBehaviour
         if (!isConnected)
         {
             this.transform.position = InitialPosition;
+            SR.sprite = DisconnectedSprite;
         }
         if (isConnected)
         {
             PlayConnectedSound();
+            SR.sprite = ConnectedSprite;
             this.transform.position = ConnectedPosition;
             ConnectedPort.isConnectedtoPlug = true;
         }

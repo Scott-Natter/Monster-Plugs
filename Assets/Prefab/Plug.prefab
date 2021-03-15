@@ -127,6 +127,10 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  ConnectedSprite: {fileID: -4223933019268723717, guid: 1d876e15db0b14547b91e4bb31098bc4,
+    type: 3}
+  DisconnectedSprite: {fileID: 2948710837273080413, guid: 083b1ff2158e6d34eaa1e2e9095a4b67,
+    type: 3}
   isDragging: 0
   isConnected: 0
 --- !u!61 &3179101728952903235
@@ -188,7 +192,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5d910c42bcb8ff44b82952904a18abed, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0

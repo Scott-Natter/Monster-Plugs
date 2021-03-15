@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class GameManager : MonoBehaviour
     private float overallChargeMax = 100f;
     public ChargeBar overallChargeBar;
 
+    public GameObject EndScreen;
+    public Text SavedMonstersText;
     void Start()
     {
         overallCharge = overallChargeMax;
@@ -51,9 +54,10 @@ public class GameManager : MonoBehaviour
             }
             NewLevel();  
         }
-        if (overallCharge <= 0)
+        if (overallChargeBar.transform.GetComponent<Slider>().value <= 0)
         {
-            overallCharge = 0;
+            EndScreen.SetActive(true);
+            SavedMonstersText.text = "You saved " + LevelNum + " monsters!";
             //Trigger Lose State and display levelnum + 1
         }
     }
