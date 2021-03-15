@@ -8,7 +8,6 @@ public class ChargeBar : MonoBehaviour
     public Slider slider;
     public Gradient gradient;
     public Image fill;
-    public Text PercentText;
 
     public void SetMaxCharge(float charge)
     {
@@ -28,8 +27,6 @@ public class ChargeBar : MonoBehaviour
     public void DepleteCharge(float charge)
     {
         slider.value -= charge;
-        PercentText.text = Mathf.Round(slider.value) + "%";
-
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 }
