@@ -4,28 +4,44 @@ using UnityEngine;
 
 public class Port : MonoBehaviour
 {
+    public float currentCharge;
+    public float maximumCharge = 100.0f;
+    public float depletionRate = 0.025f;
+    public float tempChargeRate = 0.025f;
+
+    public ChargeBar chargeBar;
+    public ChargeBar overallChargeBar;
     public bool isConnectedtoPlug;
-    public int energynum = 100, energyLoss;
     private GameObject EnergyBar;
 
     private void Start()
     {
+        overallChargeBar = GameObject.Find("/Canvas/ChargeBar").GetComponent<ChargeBar>();
+        currentCharge = maximumCharge;
+        chargeBar.SetMaxCharge(maximumCharge);
         //EnergyBar = this.transform.GetChild(0).gameObject;
     }
-    void Update()
+    void FixedUpdate()
     {
-        if (isConnectedtoPlug)
+        Debug.Log(currentCharge);
+        if (isConnectedtoPlug && currentCharge <= 100f)
         {
-            print("works");
+            //Will get replaced by a charging rate specific to
+            //the plug that is in the port
+            currentCharge = currentCharge + 0.1f;
         }
-        if (!isConnectedtoPlug)
+        else if (!isConnectedtoPlug && currentCharge >= 0)
         {
-            //subtract
+            currentCharge = currentCharge - depletionRate;
         }
-        if (energynum <= 0)
+        else if (currentCharge <= 0)
         {
+            overallChargeBar.DepleteCharge(depletionRate);
             //subtract from overall health
-            energynum = 0;
+            currentCharge = 0;
         }
+
+        // Set the UI ChargeBar's "health"
+        chargeBar.SetCharge(currentCharge);
     }
 }

@@ -10,10 +10,14 @@ public class GameManager : MonoBehaviour
 
     public GameObject PlugHolder, Plug, PortHolder, Port, CordHolder, PortLocations;
 
-    public int overallHealth;
-    // Start is called before the first frame update
+    public float overallCharge;
+    private float overallChargeMax = 100f;
+    public ChargeBar overallChargeBar;
+
     void Start()
     {
+        overallCharge = overallChargeMax;
+        overallChargeBar.SetCharge(overallCharge);
         PlugsPerLevel = 1;
         PortsPerLevel = 2;
         for (int i = 0; i < PlugsPerLevel; i++)
@@ -47,9 +51,9 @@ public class GameManager : MonoBehaviour
             }
             NewLevel();  
         }
-        if (overallHealth <= 0)
+        if (overallCharge <= 0)
         {
-            overallHealth = 0;
+            overallCharge = 0;
             //Trigger Lose State and display levelnum + 1
         }
     }
