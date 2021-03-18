@@ -18,7 +18,6 @@ public class TimerCountDown : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(TimerDone);
         if(takingAway == false && secondsLeft > 0)
         {
             StartCoroutine(TimerTick());
