@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public float overallCharge;
     private float overallChargeMax = 100f;
     public ChargeBar overallChargeBar;
+    public GameObject Monster;
+    public Sprite[] MonsterSprites;
 
     public GameObject EndScreen;
     public Text SavedMonstersText;
@@ -92,5 +94,6 @@ public class GameManager : MonoBehaviour
             var NewPort = Instantiate(Port, new Vector3(PortLocations.transform.GetChild(j).transform.position.x, PortLocations.transform.GetChild(j).transform.position.y, 0), Quaternion.identity);
             NewPort.transform.parent = PortHolder.transform;
         }
+        Monster.gameObject.GetComponent<SpriteRenderer>().sprite = MonsterSprites[Random.Range(0, 2)];
     }
 }

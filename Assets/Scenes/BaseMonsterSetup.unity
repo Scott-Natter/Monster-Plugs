@@ -1337,6 +1337,10 @@ MonoBehaviour:
   Timer: {fileID: 1413175967}
   overallCharge: 50
   overallChargeBar: {fileID: 1986347342}
+  Monster: {fileID: 2004836562}
+  MonsterSprites:
+  - {fileID: 21300000, guid: e3b9e49f18f8da54ab68aa382fb7596a, type: 3}
+  - {fileID: 21300000, guid: e833036eec6615542860165f692af76e, type: 3}
   EndScreen: {fileID: 716166852}
   SavedMonstersText: {fileID: 1644627589}
 --- !u!4 &1251825416
@@ -1433,7 +1437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textDisplay: {fileID: 516548207}
-  secondsLeft: 25
+  secondsLeft: 3
   takingAway: 0
   TimerDone: 0
 --- !u!1 &1447771550
