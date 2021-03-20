@@ -1488,6 +1488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlugsPerLevel: 0
   PortsPerLevel: 0
+  LevelNum: 0
   InitialPlugSpawn: {x: -1.5, y: -4.2, z: 0}
   PlugHolder: {fileID: 1621622587}
   Plug: {fileID: 3179101728952903231, guid: a219eb50efec2454295810e17897b31b, type: 3}
@@ -1502,6 +1503,7 @@ MonoBehaviour:
   MonsterSprites:
   - {fileID: 21300000, guid: e3b9e49f18f8da54ab68aa382fb7596a, type: 3}
   - {fileID: 21300000, guid: e833036eec6615542860165f692af76e, type: 3}
+  MonstersSavedText: {fileID: 1369312634}
   mainCam: {fileID: 519420031}
   speed: 0
   minimum: 0
@@ -1621,7 +1623,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Monsters Saved: -'
+  m_Text: 'Monsters Saved: 0'
 --- !u!222 &1369312637
 CanvasRenderer:
   m_ObjectHideFlags: 0

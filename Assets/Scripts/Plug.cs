@@ -16,13 +16,15 @@ public class Plug : MonoBehaviour
     private Vector3 ConnectedPosition;
     private Port ConnectedPort;
     private AudioSource audioSource;
+    public int plugType;
 
     private SpriteRenderer SR;
     public Sprite ConnectedSprite, DisconnectedSprite;
-
+    public Sprite[] PlugSprites;
     public bool isDragging;
     public bool isConnected;
-    
+    public float chargeRate;
+
     // Start is called before the first frame update
     public IEnumerator Start()
     {
@@ -43,6 +45,25 @@ public class Plug : MonoBehaviour
         Cord.SetPosition(0, CordStart.transform.position);
         InitialPosition = this.transform.position;
         isInstantiated = true;
+
+        switch(plugType)
+        {
+            case 0:
+                DisconnectedSprite = PlugSprites[0];
+                ConnectedSprite    = PlugSprites[3];
+                chargeRate = 0.1f;
+                break;
+            case 1:
+                DisconnectedSprite = PlugSprites[1];
+                ConnectedSprite    = PlugSprites[4];
+                chargeRate = 0.2f;
+                break;
+            case 2:
+                DisconnectedSprite = PlugSprites[2];
+                ConnectedSprite    = PlugSprites[5];
+                chargeRate = 0.3f;
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -86,6 +107,7 @@ public class Plug : MonoBehaviour
             SR.sprite = ConnectedSprite;
             this.transform.position = ConnectedPosition;
             ConnectedPort.isConnectedtoPlug = true;
+            ConnectedPort.chargeRate = chargeRate;
         }
     }
 

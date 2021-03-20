@@ -7,7 +7,7 @@ using UnityEngine.Rendering.PostProcessing;
 public class GameManager : MonoBehaviour
 {
     public int PlugsPerLevel, PortsPerLevel;
-    private int LevelNum = 0;
+    public int LevelNum = 0;
     public Vector3 InitialPlugSpawn;
     public GameObject PlugHolder, Plug, PortHolder, Port, CordHolder, PortLocations;
     public TimerCountDown Timer;
@@ -16,11 +16,13 @@ public class GameManager : MonoBehaviour
     public ChargeBar overallChargeBar;
     public GameObject Monster;
     public Sprite[] MonsterSprites;
+    public GameObject MonstersSavedText;
     public Camera mainCam;
     public float speed, minimum = 0f, maximum = 1f;
 
     public GameObject EndScreen;
     public Text SavedMonstersText;
+    private int superPlugs = 0;
     void Start()
     {
         overallCharge = overallChargeMax;
@@ -83,27 +85,53 @@ public class GameManager : MonoBehaviour
     void NewLevel()
     {
         LevelNum += 1;
+        MonstersSavedText.GetComponent<Text>().text = "Monsters Saved: " + LevelNum;
         overallChargeBar.SetCharge(100);
-        if (LevelNum < 3)
+        if (LevelNum == 1)
+        {
+            PlugsPerLevel = 2;
+            PortsPerLevel = 4;         
+        }
+        else if (LevelNum < 3)
         {
             PlugsPerLevel = Random.Range(1,3);
             PortsPerLevel = Random.Range(3, 5);
         }
         else if (LevelNum < 6)
         {
-            PlugsPerLevel = Random.Range(2, 4);
-            PortsPerLevel = Random.Range(4, 6);
+            superPlugs    = 1;
+            PlugsPerLevel = Random.Range(2, 3);
+            PortsPerLevel = Random.Range(4, 7);
         }
         else if (LevelNum >= 6)
         {
+            superPlugs    = Random.Range(1, 2);
             PlugsPerLevel = Random.Range(3, 5);
-            PortsPerLevel = Random.Range(5, 8);
+            PortsPerLevel = Random.Range(7, 8);
+        }
+        else if (LevelNum >= 10)
+        {
+            superPlugs    = Random.Range(1, 3);
+            PlugsPerLevel = Random.Range(3, 4);
+            PortsPerLevel = 8;
+        }
+        else if (LevelNum >= 15)
+        {
+            superPlugs    = Random.Range(1, 3);
+            PlugsPerLevel = 3;
+            PortsPerLevel = 8;
         }
 
         for (int i = 0; i < PlugsPerLevel; i++)
         {
             var NewPlug = Instantiate(Plug, new Vector3(InitialPlugSpawn.x + (2 * i), InitialPlugSpawn.y, 0), Quaternion.identity);
             NewPlug.transform.parent = PlugHolder.transform;
+            //In later levels, the types of plugs changes
+            if(superPlugs != 0)
+            {
+                NewPlug.GetComponent<Plug>().plugType = Random.Range(0,2);
+                superPlugs = superPlugs - 1;
+            }
         }
         for (int j = 0; j < PortsPerLevel; j++)
         {

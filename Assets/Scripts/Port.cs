@@ -7,7 +7,7 @@ public class Port : MonoBehaviour
     public float currentCharge;
     public float maximumCharge = 100.0f;
     public float depletionRate = 0.025f;
-    public float tempChargeRate = 0.025f;
+    public float chargeRate = 0.1f;
 
     AudioSource audioSource;
     public ChargeBar chargeBar;
@@ -29,7 +29,7 @@ public class Port : MonoBehaviour
         {
             //Will get replaced by a charging rate specific to
             //the plug that is in the port
-            currentCharge = currentCharge + 0.1f;
+            currentCharge = currentCharge + chargeRate;
         }
         else if (!isConnectedtoPlug && currentCharge >= 0)
         {

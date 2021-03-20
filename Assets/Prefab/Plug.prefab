@@ -131,6 +131,13 @@ MonoBehaviour:
     type: 3}
   DisconnectedSprite: {fileID: 2948710837273080413, guid: 083b1ff2158e6d34eaa1e2e9095a4b67,
     type: 3}
+  PlugSprites:
+  - {fileID: 21300000, guid: 6f60f1af511199c4cb676f2ed21ec6bc, type: 3}
+  - {fileID: 21300000, guid: 8f14a26a1aaef8843b1b933473996612, type: 3}
+  - {fileID: 21300000, guid: c5c1ec06e3748ba4b9c8a0a76aa4f2ed, type: 3}
+  - {fileID: 21300000, guid: 6ddad576d439423458fd63199261d162, type: 3}
+  - {fileID: 21300000, guid: 4869505f54bb16249bc56b24f45e634f, type: 3}
+  - {fileID: 21300000, guid: fce4225a38e2a1b46afb6ee612bf6dff, type: 3}
   isDragging: 0
   isConnected: 0
 --- !u!50 &3179101728952903236
