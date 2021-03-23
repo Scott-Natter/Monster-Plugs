@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3179101728952903234}
   - component: {fileID: 3179101728952903236}
   - component: {fileID: 7542073875971365776}
-  - component: {fileID: 2006836278568699165}
+  - component: {fileID: 9158299692956127337}
   m_Layer: 8
   m_Name: Plug
   m_TagString: Plug
@@ -127,6 +127,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  plugType: 0
   ConnectedSprite: {fileID: -4223933019268723717, guid: 1d876e15db0b14547b91e4bb31098bc4,
     type: 3}
   DisconnectedSprite: {fileID: 2948710837273080413, guid: 083b1ff2158e6d34eaa1e2e9095a4b67,
@@ -140,6 +141,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fce4225a38e2a1b46afb6ee612bf6dff, type: 3}
   isDragging: 0
   isConnected: 0
+  chargeRate: 0
 --- !u!50 &3179101728952903236
 Rigidbody2D:
   serializedVersion: 4
@@ -257,8 +259,8 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!58 &2006836278568699165
-CircleCollider2D:
+--- !u!61 &9158299692956127337
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -270,6 +272,16 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0029190949, y: 0.032112002}
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.26, y: 1.75}
+    newSize: {x: 2.26, y: 1.75}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.80887794
+  m_Size: {x: 2.26, y: 1.75}
+  m_EdgeRadius: 0
